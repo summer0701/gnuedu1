@@ -1,9 +1,16 @@
 		var Observable = require("FuseJS/Observable");		
 		var ROOT_URL = "https://openapi.naver.com/v1/search/news.json?query=";
 		var InterApp = require("FuseJS/InterApp");
+		var token = Observable();
 
-		load("주식");
-		//console.log(JSON.stringify(load()));
+
+		this.onParameterChanged(function(param) {
+		    console.log("param1: " + JSON.stringify(param));
+
+		    load(param);
+    	});
+
+		
 		var e = Observable();
 		var SearchTextJS = Observable(); 
 		function onValueChanged()
@@ -62,7 +69,7 @@
 			onValueChanged:onValueChanged,
 			SearchTextJS:SearchTextJS,
 			OnEventCardClick:OnEventCardClick,
-			gologin: function() { router.push("loginpage");}
+			gologin: function() { router.goto("loginpage");}
 			
 		}
 
