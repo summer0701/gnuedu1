@@ -1,0 +1,99 @@
+<Page ux:Class="SubPage">
+	<JavaScript File="../js/sub.js" />
+	<Router ux:Dependency="router" />
+	<StackPanel>
+		<Rectangle Background="#000">
+			<Panel Margin="10" Padding="10" Height="40" Clicked="{gologin}">
+					<Rectangle Layer="Background" Color="#125F63" CornerRadius="4">
+						<DropShadow Angle="90" Distance="1" Spread="2" Color="#00000060" />
+					</Rectangle>
+					<Text Value="시작페이지" FontSize="16" Color="White" Alignment="Center" />
+					<WhilePressed>
+						<Scale Factor=".95" Duration=".08" Easing="QuadraticOut" />
+					</WhilePressed>
+				</Panel>
+		</Rectangle>
+		<StackPanel>
+				<TextInput Row="0" Column="1" PlaceholderText="검색키워드" PlaceholderColor="#999" TextColor="#fff" CaretColor="#fff" InputHint="Email" Height="30" Value="{SearchTextJS}" ValueChanged="{onValueChanged}" ux:Name="SearchText">
+					<Rectangle Layer="Background">
+		            	<Stroke Width="2" Brush="#BBB" />
+		        	</Rectangle>
+					<SolidColor Color="#010101" />
+					<Shadow Angle="46" Size="5" Distance="10" />
+				</TextInput>
+				<DockPanel Height="500">
+					
+					
+					<ScrollView ux:Name="mainScrollView" ClipToBounds="false" LayoutMode="PreserveVisual">
+						<StackPanel Margin="0,0,0,15">
+							<Selection MinCount="0" MaxCount="1" />
+							
+							<Each Items="{eventsValue}">
+								<EventCard layoutTarget="contentPlaceholder">
+									<Clicked>
+										 <Callback Handler="{OnEventCardClick}" />
+		
+									</Clicked>
+									
+								</EventCard>
+							</Each>
+						</StackPanel>
+					</ScrollView>
+					
+					<BottomBarBackground Dock="Bottom" />
+				</DockPanel>
+			</StackPanel>
+	</StackPanel>
+
+	
+	
+	<Text ux:Class="BodyText" FontSize="14" Color="#263238" TextWrapping="Wrap" />
+	
+	<BodyText ux:Class="MutedText" Color="#888" />
+	<Panel ux:Name="contentPlaceholder" />
+	<JavaScript File="data.js" />
+	
+
+
+	
+	<StackPanel ux:Class="EventCard" ImageHeight="200">
+		<float ux:Property="ImageHeight" />
+		<Panel ux:Dependency="layoutTarget" />
+		<Panel ux:Name="contentLimitPanel" Height="{ReadProperty ImageHeight}">
+			<DockPanel ux:Name="imageAndContent" ClipToBounds="true" HitTestMode="LocalBoundsAndChildren">
+				
+				
+				<Panel Dock="Top" Height="{ReadProperty ImageHeight}">
+					<Panel>
+						<StackPanel Margin="56,15,30,15" Alignment="BottomLeft">
+							<Text Value="{=toUpper({pubDate})}" Color="#fffb" FontSize="14" />
+							<Text Value="{title}" Color="#fff" FontSize="27" TextWrapping="Wrap" Alignment="CenterLeft" />
+						</StackPanel>
+						
+						<Rectangle ux:Name="image" Layer="Background" CornerRadius="2,2,0,0" Margin="15,15,15,0">
+							<SolidColor Color="#444" />
+							
+							<LinearGradient>
+								<GradientStop Color="0,0,0, 0.1" Offset="0" />
+								<GradientStop Color="0,0,0, 0.92" Offset="1" />
+							</LinearGradient>
+						</Rectangle>
+						
+					</Panel>
+				</Panel>
+				
+				
+			</DockPanel>
+		</Panel>
+		
+		<StackPanel Margin="35,10" ItemSpacing="10">
+			<Text Value="{originallink}" Font="RobotoMedium" Margin="0,10" />
+			<MutedText Value="{description}" />
+			
+		</StackPanel>
+		
+		<Rectangle Layer="Background" Color="#fff" CornerRadius="2" Margin="15,15,15,0">
+			<Shadow Size="2" Distance="2" Color="#0003" />
+		</Rectangle>
+	</StackPanel>
+</Page>

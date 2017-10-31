@@ -1,0 +1,9 @@
+.uno/CodeCompletion/ux13/MainView.g.uno
+.uno/CodeCompletion/ux13/LoginPage.g.uno
+.uno/CodeCompletion/ux13/MainPage.g.uno
+.uno/CodeCompletion/ux13/SplashPage.g.uno
+.uno/CodeCompletion/ux13/SubPage.g.uno
+.uno/CodeCompletion/ux13/BodyText.g.uno
+.uno/CodeCompletion/ux13/MutedText.g.uno
+.uno/CodeCompletion/ux13/EventCard.g.uno
+.uno/CodeCompletion/ux13/exam-02.unoproj.g.uno
