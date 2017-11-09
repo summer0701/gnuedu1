@@ -9,7 +9,7 @@
 		</JavaScript>
 
 		<!-- Video -->
-		<Video Layer="Background" File="../Assets/Movies/sample.mp4" AutoPlay="true" IsLooping="true" StretchMode="UniformToFill" Opacity="0.813"> 
+		<Video Layer="Background" File="../Assets/Movies/sample.mp4" AutoPlay="true" IsLooping="true" StretchMode="UniformToFill" Opacity="0.138" Volume="0" Width="300" Height="250"> 
 			<Blur Radius="0" />
 		</Video>
 

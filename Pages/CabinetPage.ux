@@ -1,0 +1,3 @@
+<Panel ux:Class="CabinetPage">
+	<Router ux:Dependency="router" />
+</Panel>

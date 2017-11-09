@@ -6,7 +6,8 @@
     "Fuse.Launcher"
   ],
   "Includes": [
-    "*"
+    "*",
+    "Assets/Images/*.jpg:Bundle"
   ]
 }
 

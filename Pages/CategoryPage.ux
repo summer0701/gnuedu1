@@ -1,0 +1,96 @@
+<Panel ux:Class="CategoryPage">
+
+	<iOS.StatusBarConfig Style="Light" />
+	<Router ux:Dependency="router" />
+	<Font ux:Global="RobotoThinItalic" File="../Assets/Fonts/Roboto-ThinItalic.ttf" /> 
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");		
+		var selectedTitle = Observable(1);
+		function OnEventCardClick1(arg)
+		{
+			router.goto("subpage","IT");
+		
+		}
+		function OnEventCardClick2(arg)
+		{
+			router.goto("subpage","문화");
+		
+		}
+		function OnEventCardClick3(arg)
+		{
+			router.goto("subpage","스포츠");
+		
+		}		
+		function OnEventCardClick4(arg)
+		{
+			router.goto("subpage","경제");
+		
+		}				
+		module.exports = {
+			OnEventCardClick1:OnEventCardClick1,
+			OnEventCardClick2:OnEventCardClick2,
+			OnEventCardClick3:OnEventCardClick3,
+			OnEventCardClick4:OnEventCardClick4,
+			selectedTitle:selectedTitle,
+		}
+	</JavaScript>
+	<Page ux:Class="ParallaxPage">
+		<string ux:Property="TitleText" />
+		<float4 ux:Property="ThemeColor" />
+		<FileSource ux:Property="ImageFile" />
+		
+		
+		
+		
+		<Panel ux:Name="cover" ClipToBounds="true">
+			<EnteringAnimation>
+				<Move Target="title"           X="-0.2" RelativeTo="ParentSize" />
+				<Move Target="swipeUpText"     X="1"    RelativeTo="ParentSize" />
+				<Move Target="coverBackground" X="0.4"  RelativeTo="ParentSize" />
+			</EnteringAnimation>
+			<ExitingAnimation>
+				<Move Target="title"           X="0.2"  RelativeTo="ParentSize" />
+				<Move Target="swipeUpText"     X="-1"   RelativeTo="ParentSize" />
+				<Move Target="coverBackground" X="-0.4" RelativeTo="ParentSize" />
+			</ExitingAnimation>
+			
+			<Text ux:Name="title" Value="{ReadProperty TitleText}"
+			      Alignment="Center" Color="#fff" Font="RobotoThinItalic" FontSize="60" />
+
+
+			<Text ux:Name="swipeUpText" Alignment="BottomCenter" Color="#fff" Margin="0,0,0,25">
+				Click to read
+			</Text>
+			<WhileFalse>
+				<Cycle Target="swipeUpText.Opacity" Low="0.05" High="0.4" Frequency="0.4" Waveform="Sine" />
+			</WhileFalse>
+			<Clicked>
+				
+					
+				
+
+				
+			</Clicked>
+			<Rectangle ux:Name="coverBackground">
+				<Rectangle Color="#0002">
+					<LinearGradient AngleDegrees="55" Opacity="0.8">
+						<GradientStop Color="#0000" Offset="-0.2" />
+						<GradientStop Color="{ReadProperty ThemeColor}" Offset="1.15" />
+					</LinearGradient>
+				</Rectangle>
+				<Image Layer="Background" File="{ReadProperty ImageFile}" StretchMode="UniformToFill">
+					<Desaturate Amount="0.4" />
+				</Image>
+			</Rectangle>
+		</Panel>
+	</Page>
+	
+	<PageControl ux:Name="pageControl" InactiveState="Unchanged">
+		<ParallaxPage TitleText="TECH"     ThemeColor="#9C27B0" ImageFile="../Assets/Images/tech.jpg" Clicked="{OnEventCardClick1}"/>
+		<ParallaxPage TitleText="CULTURE"  ThemeColor="#E91E63" ImageFile="../Assets/Images/culture.jpg" Clicked="{OnEventCardClick2}"/>
+		<ParallaxPage TitleText="SPORTS"   ThemeColor="#43A047" ImageFile="../Assets/Images/sports.jpg" Clicked="{OnEventCardClick3}" />
+		<ParallaxPage TitleText="BUSINESS" ThemeColor="#1A237E" ImageFile="../Assets/Images/business.jpg" Clicked="{OnEventCardClick4}"/>
+	</PageControl>
+
+
+</Panel>

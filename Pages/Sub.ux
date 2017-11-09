@@ -87,7 +87,7 @@
 		</Panel>
 		
 		<StackPanel Margin="35,10" ItemSpacing="10">
-			<Text Value="{originallink}" Font="RobotoMedium" Margin="0,10" />
+			<Text Value="{link}" Font="RobotoMedium" Margin="0,10" />
 			<MutedText Value="{description}" />
 			
 		</StackPanel>
