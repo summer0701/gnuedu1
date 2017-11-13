@@ -7,15 +7,15 @@
 			gologin: function() { router.goto("loginpage");},
 			gosub: function() { 
 				var keyword="";
-				router.goto("subpage",keyword);},
+				router.goto("cabinetpage",keyword);},
 			gostock: function() { 
 
 				var keyword="주식";
-				router.goto("subpage",keyword);
+				router.goto("cabinetpage",keyword);
 		},
 			goreal: function() {
 				var keyword="부동산";
-				router.goto("subpage",keyword);}
+				router.goto("cabinetpage",keyword);}
 		}
 	</JavaScript>
 	<HamburgerButton ux:Name="hamburger" Alignment="TopLeft" Y="20">

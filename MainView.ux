@@ -7,8 +7,8 @@
 
 	<Router ux:Name="router" />
 
-	<ClientPanel>
-		<Navigator DefaultPath="categorypage">
+	<Panel>
+		<Navigator DefaultPath="splashpage">
 			<!-- 1. Splash Page -->
 			<SplashPage ux:Template="splashpage" router="router" />
 			<!-- 2. Login Page -->
@@ -22,5 +22,5 @@
 
 			<CategoryPage ux:Template="categorypage" router="router" />
 		</Navigator>
-	</ClientPanel>
+	</Panel>
 </App>

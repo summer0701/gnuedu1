@@ -8,22 +8,22 @@
 		var selectedTitle = Observable(1);
 		function OnEventCardClick1(arg)
 		{
-			router.goto("subpage","IT");
+			router.goto("cabinetpage","IT");
 		
 		}
 		function OnEventCardClick2(arg)
 		{
-			router.goto("subpage","문화");
+			router.goto("cabinetpage","문화");
 		
 		}
 		function OnEventCardClick3(arg)
 		{
-			router.goto("subpage","스포츠");
+			router.goto("cabinetpage","스포츠");
 		
 		}		
 		function OnEventCardClick4(arg)
 		{
-			router.goto("subpage","경제");
+			router.goto("cabinetpage","경제");
 		
 		}				
 		module.exports = {

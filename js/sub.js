@@ -43,6 +43,7 @@
 				//console.log(e.value);
 				e.clear();
 				for(var i=0; i<responseObject.items.length;i++) {
+
 					e.add(responseObject.items[i]); 	
 				}
 				//e.remove(1);
@@ -80,7 +81,7 @@
 			
 
 			var url = "https://api.rss2json.com/v1/api.json?rss_url="+urlsub+"&api_key=a6thfhv2ngviiop4zksqugkedhfqfke3hbtqyo5h&_=1510204745681";
-			console.log(url);
+			//console.log(url);
 			fetch(url, {
 				method: 'GET',
 			
@@ -98,8 +99,11 @@
 				e.clear();
 				for(var i=0; i<responseObject.items.length;i++) {
 					//contentString = responseObject.items[i].replace(regExString, "");
+		
+					//console.log(responseObject.items[i].description);
 					responseObject.items[i].description = responseObject.items[i].description.replace(regExString, "");
-					console.log(JSON.stringify(responseObject.items[i].description));
+					
+					
 					e.add(responseObject.items[i]); 	
 				}
 				//e.remove(1);
@@ -125,7 +129,7 @@
 			onValueChanged:onValueChanged,
 			SearchTextJS:SearchTextJS,
 			OnEventCardClick:OnEventCardClick,
-			gologin: function() { router.goto("loginpage");}
+			goback: function() { router.goto("categorypage");}
 			
 		}
 

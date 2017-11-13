@@ -4,7 +4,7 @@
 
 		<JavaScript>
 			module.exports = {
-				gologin: function() { router.push("loginpage");}
+				gologin: function() { router.push("categorypage");}
 			}
 		</JavaScript>
 

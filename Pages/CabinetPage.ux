@@ -1,3 +1,124 @@
-<Panel ux:Class="CabinetPage">
+<Panel ux:Class="CabinetPage" Background="#fff">
 	<Router ux:Dependency="router" />
+
+		<ClientPanel >
+			<Text ux:Name="swipeUpText" Alignment="TopCenter" Color="#000" Margin="0,0,0,25" ZOffset="-1" Y="20">
+				Scroll the data...
+			</Text>
+			<WhileFalse>
+				<Cycle Target="swipeUpText.Opacity" Low="0.05" High="0.4" Frequency="0.4" Waveform="Sine" />
+			</WhileFalse>			
+		<Panel Dock="Top" Height="90">
+			<Grid Alignment="Left" Width="100%" Rows="1*,auto">
+				<Grid Alignment="Left" Width="100%" Columns="auto,1*,auto">
+					<Rectangle Width="50" Clicked="{gohome}">
+						<Image File="../Assets/Images/home.png" Width="16" />
+					</Rectangle>
+					<Text Value="NEWS" Color="#ECEFF1" FontSize="28" Alignment="Center" />
+					
+					<Rectangle Width="50" Clicked="{goback}">
+						<Image File="../Assets/Images/back.png" Width="16" />
+					</Rectangle>
+					<Rectangle Layer="Background" Color="#37474F">
+
+					</Rectangle>
+					<Shadow />					
+				</Grid>
+				<TextInput ux:Name="searchText" PlaceholderColor="#022328" Padding="10" TextColor="#fff" Opacity="1" ZOffset="3" IsEnabled="true" Width="100%">
+				<Rectangle Layer="Background" CornerRadius="0" Color="#022328">
+					<Stroke Width="2" Brush="#BBB" />
+				</Rectangle>
+			 	<SolidColor />
+				</TextInput>
+			</Grid>
+			
+
+		</Panel>
+		
+		<ScrollView>
+			<StackPanel ItemSpacing="1">
+				<Each Items="{dataSource}">
+					<NewsItem>
+						<Clicked>
+							<Callback Handler="{eachClicked}" />
+
+						</Clicked>
+					</NewsItem>
+				</Each>
+			</StackPanel>
+		</ScrollView>
+
+	</ClientPanel>
+	
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+		var InterApp = require("FuseJS/InterApp");
+		var data = Observable();
+
+		function Article(item) {
+			//console.log(JSON.stringify(item));
+			this.title = item.title;
+			this.description = item.description;
+			this.author = item.author;
+			this.url = item.original_url;
+
+			this.image = item.iamge_url;
+			//console.log(this.image); 
+			
+		};
+		//fetch("https://api.myjson.com/bins/16g003") 경제 
+		fetch("https://api.myjson.com/bins/16g003")
+		.then(function(response) { return response.json(); })
+		.then(function(responseObject) {
+			var items = [];
+
+			for (var i in responseObject.content) {
+
+				items.push(new Article(responseObject.content[i]));
+			}
+			data.replaceAll(items);
+		});
+		function gohome()
+		{
+			router.goto("splashpage");
+		}
+		function goback()
+		{
+			router.goto("categorypage");	
+		}
+		function eachClicked(e)
+		{
+			console.log(JSON.stringify(e.data.url));
+			InterApp.launchUri(e.data.url);	
+		}
+		module.exports = {
+			dataSource: data,
+			gohome:gohome,
+			goback:goback,
+			eachClicked:eachClicked
+		};
+	</JavaScript>
+
+	<Panel ux:Class="NewsItem">
+		<StackPanel ItemSpacing="10" Margin="15">
+			<Text Value="{title}" TextWrapping="Wrap" FontSize="20" Color="#FFFFFF" />
+			<DockPanel>
+				<Text Value="{description}" TextWrapping="Wrap" FontSize="13" Color="#FFFFFF" />
+				<WhileString Value="{image}" Test="IsNotEmpty">
+					<Panel Dock="Left">
+						<Image Url="{image}" Width="80" Margin="0,0,10,0" Alignment="TopLeft" />
+					</Panel>
+				</WhileString>
+			</DockPanel>
+			<DockPanel>
+				
+				<WhileString Value="{author}" Test="IsNotEmpty">
+			 		<Text Value="by {author}" FontSize="10" Color="#FFFFFF" Dock="Right" />
+			 	</WhileString>
+			</DockPanel>
+		</StackPanel>
+		<Rectangle Color="#052328" />
+	</Panel>
+
+	
 </Panel>

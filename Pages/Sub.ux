@@ -3,11 +3,11 @@
 	<Router ux:Dependency="router" />
 	<StackPanel>
 		<Rectangle Background="#000">
-			<Panel Margin="10" Padding="10" Height="40" Clicked="{gologin}">
+			<Panel Margin="10" Padding="10" Height="40" Clicked="{goback}">
 					<Rectangle Layer="Background" Color="#125F63" CornerRadius="4">
 						<DropShadow Angle="90" Distance="1" Spread="2" Color="#00000060" />
 					</Rectangle>
-					<Text Value="시작페이지" FontSize="16" Color="White" Alignment="Center" />
+					<Text Value="뒤로" FontSize="16" Color="White" Alignment="Center" />
 					<WhilePressed>
 						<Scale Factor=".95" Duration=".08" Easing="QuadraticOut" />
 					</WhilePressed>
@@ -51,7 +51,7 @@
 	
 	<BodyText ux:Class="MutedText" Color="#888" />
 	<Panel ux:Name="contentPlaceholder" />
-	<JavaScript File="data.js" />
+	
 	
 
 
