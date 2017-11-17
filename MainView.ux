@@ -8,7 +8,7 @@
 	<Router ux:Name="router" />
 
 	<Panel>
-		<Navigator DefaultPath="splashpage">
+		<Navigator DefaultPath="selectionpage">
 			<!-- 1. Splash Page -->
 			<SplashPage ux:Template="splashpage" router="router" />
 			<!-- 2. Login Page -->
@@ -21,6 +21,7 @@
 			<CabinetPage ux:Template="cabinetpage" router="router" />
 
 			<CategoryPage ux:Template="categorypage" router="router" />
+			<SelectionPage ux:Template="selectionpage" router="router" />
 		</Navigator>
 	</Panel>
 </App>

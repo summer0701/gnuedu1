@@ -1,0 +1,47 @@
+<Panel ux:Class="SelectionPage">
+	<Router ux:Dependency="router" />
+	<DockPanel>
+		<JavaScript>
+			var Observable = require("FuseJS/Observable");
+
+			var profiles = Observable(
+				{ resource : "Assets/Images/profile_1.png" },
+				{ resource : "Assets/Images/profile_2.png" },
+				{ resource : "Assets/Images/profile_3.png" },
+				{ resource : "Assets/Images/profile_6.png" },
+				{ resource : "Assets/Images/profile_4.png" },
+				{ resource : "Assets/Images/profile_5.png" },
+				{ resource : "Assets/Images/profile_2.png" },
+				{ resource : "Assets/Images/profile_5.png" },
+				{ resource : "Assets/Images/profile_4.png" },
+				{ resource : "Assets/Images/profile_1.png" }
+				
+			);
+
+  			module.exports = {
+  				profiles : profiles
+  			}
+		</JavaScript>
+
+
+		<StatusBarBackground DockPanel.Dock="Top" />
+
+		<Panel Margin="0,100">
+			<LinearNavigation>
+				<NavigationMotion GotoDuration="0.4" GotoEasing="CircularOut" />
+			</LinearNavigation>
+			<SwipeNavigate SwipeDirection="Left" />
+			<Each Items="{profiles}">
+				<Card Name="{resource}" CachingMode="Never">
+					<Image File="{resource}"/>
+					<Clicked>
+						<NavigateTo Target="{resource}"/>
+					</Clicked>
+				</Card>
+			</Each>
+
+		</Panel>
+
+		<BottomBarBackground DockPanel.Dock="Bottom" />
+	</DockPanel>
+</Panel>

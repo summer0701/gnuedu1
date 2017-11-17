@@ -16,7 +16,7 @@
 		<Grid RowCount="2">
 			<!-- Logo -->
 			<StackPanel Alignment="VerticalCenter">
-				<Text Font="MyFont" Color="White" Alignment="HorizontalCenter" FontSize="50">The NewS</Text>
+				<Text Font="MyFont" Color="White" Alignment="HorizontalCenter" FontSize="50">The News</Text>
 			</StackPanel>
 
 			<!-- Get Started Button -->

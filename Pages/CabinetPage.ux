@@ -1,4 +1,4 @@
-<Panel ux:Class="CabinetPage" Background="#fff">
+<Panel ux:Class="CabinetPage" Background="#022328">
 	<Router ux:Dependency="router" />
 
 		<ClientPanel >
@@ -12,20 +12,20 @@
 			<Grid Alignment="Left" Width="100%" Rows="1*,auto">
 				<Grid Alignment="Left" Width="100%" Columns="auto,1*,auto">
 					<Rectangle Width="50" Clicked="{gohome}">
-						<Image File="../Assets/Images/home.png" Width="16" />
+						<Image File="../Assets/Images/home.png" Width="24" />
 					</Rectangle>
 					<Text Value="NEWS" Color="#ECEFF1" FontSize="28" Alignment="Center" />
 					
 					<Rectangle Width="50" Clicked="{goback}">
-						<Image File="../Assets/Images/back.png" Width="16" />
+						<Image File="../Assets/Images/back.png" Width="24" />
 					</Rectangle>
 					<Rectangle Layer="Background" Color="#37474F">
 
 					</Rectangle>
 					<Shadow />					
 				</Grid>
-				<TextInput ux:Name="searchText" PlaceholderColor="#022328" Padding="10" TextColor="#fff" Opacity="1" ZOffset="3" IsEnabled="true" Width="100%">
-				<Rectangle Layer="Background" CornerRadius="0" Color="#022328">
+				<TextInput ux:Name="searchText" PlaceholderColor="#FFF" Padding="10" TextColor="#fff" Opacity="1" ZOffset="3" IsEnabled="true" Width="100%">
+				<Rectangle Layer="Background" CornerRadius="0" Color="#FFF">
 					<Stroke Width="2" Brush="#BBB" />
 				</Rectangle>
 			 	<SolidColor />
@@ -38,12 +38,17 @@
 		<ScrollView>
 			<StackPanel ItemSpacing="1">
 				<Each Items="{dataSource}">
+					<Panel>
+					
+
 					<NewsItem>
+
 						<Clicked>
 							<Callback Handler="{eachClicked}" />
 
 						</Clicked>
 					</NewsItem>
+					</Panel>
 				</Each>
 			</StackPanel>
 		</ScrollView>
@@ -91,19 +96,33 @@
 			console.log(JSON.stringify(e.data.url));
 			InterApp.launchUri(e.data.url);	
 		}
+
+
+
 		module.exports = {
 			dataSource: data,
 			gohome:gohome,
 			goback:goback,
 			eachClicked:eachClicked
 		};
+
+
 	</JavaScript>
 
-	<Panel ux:Class="NewsItem">
+	<Panel ux:Class="NewsItem" Background="#fff">
 		<StackPanel ItemSpacing="10" Margin="15">
-			<Text Value="{title}" TextWrapping="Wrap" FontSize="20" Color="#FFFFFF" />
+			<Panel>
+			<SwipeGesture ux:Name="swipeRight" Length="200" Direction="Right" Type="Active" />
+			<SwipingAnimation Source="swipeRight">
+				<Change background.Color="#000" Easing="ExponentialOut" />
+			</SwipingAnimation>
+			<RemovingAnimation>
+				<Move RelativeTo="Size" Y="-1" Duration="0.4" Easing="CircularInOut" />
+			</RemovingAnimation>			
+			<Text Value="{title}" TextWrapping="Wrap" FontSize="20" Color="#022328" />
+			</Panel>
 			<DockPanel>
-				<Text Value="{description}" TextWrapping="Wrap" FontSize="13" Color="#FFFFFF" />
+				<Text Value="{description}" TextWrapping="Wrap" FontSize="13" Color="#022328" />
 				<WhileString Value="{image}" Test="IsNotEmpty">
 					<Panel Dock="Left">
 						<Image Url="{image}" Width="80" Margin="0,0,10,0" Alignment="TopLeft" />
@@ -113,11 +132,14 @@
 			<DockPanel>
 				
 				<WhileString Value="{author}" Test="IsNotEmpty">
-			 		<Text Value="by {author}" FontSize="10" Color="#FFFFFF" Dock="Right" />
+			 		<Text Value="by {author}" FontSize="10" Color="#022328" Dock="Right" />
 			 	</WhileString>
 			</DockPanel>
+
 		</StackPanel>
-		<Rectangle Color="#052328" />
+		<Rectangle >
+			<SolidColor ux:Name="background" Color="#FFF" />
+		</Rectangle>
 	</Panel>
 
 	
