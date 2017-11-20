@@ -1,27 +1,39 @@
-<Panel ux:Class="SelectionPage">
+<ClientPanel ux:Class="SelectionPage">
 	<Router ux:Dependency="router" />
-	<DockPanel>
-		<JavaScript>
+	<JavaScript>
 			var Observable = require("FuseJS/Observable");
 
 			var profiles = Observable(
-				{ resource : "Assets/Images/profile_1.png" },
+				{ resource : "Assets/Images/profile_1.png", value : "profile1" },
 				{ resource : "Assets/Images/profile_2.png" },
 				{ resource : "Assets/Images/profile_3.png" },
-				{ resource : "Assets/Images/profile_6.png" },
-				{ resource : "Assets/Images/profile_4.png" },
-				{ resource : "Assets/Images/profile_5.png" },
-				{ resource : "Assets/Images/profile_2.png" },
-				{ resource : "Assets/Images/profile_5.png" },
-				{ resource : "Assets/Images/profile_4.png" },
-				{ resource : "Assets/Images/profile_1.png" }
+				{ resource : "Assets/Images/profile_4.png" }
+			
+				
 				
 			);
-
+			function goback()
+			{
+				console.log("goback");
+				router.goBack("splashpage");	
+			}	
+			function clickProfile(e)
+			{
+				console.log(e.data.value=="profile1");
+				if(e.data.value=="profile1") {
+					router.push("categorypage");
+				}
+				console.log(JSON.stringify(e.data.value));
+			}
   			module.exports = {
-  				profiles : profiles
+  				profiles : profiles,
+  				clickProfile:clickProfile,
+  				goback:goback
   			}
 		</JavaScript>
+
+	<DockPanel>
+		
 
 
 		<StatusBarBackground DockPanel.Dock="Top" />
@@ -36,6 +48,7 @@
 					<Image File="{resource}"/>
 					<Clicked>
 						<NavigateTo Target="{resource}"/>
+						<Callback Handler="{clickProfile}"/>
 					</Clicked>
 				</Card>
 			</Each>
@@ -44,4 +57,4 @@
 
 		<BottomBarBackground DockPanel.Dock="Bottom" />
 	</DockPanel>
-</Panel>
+</ClientPanel>

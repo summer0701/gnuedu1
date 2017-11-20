@@ -7,7 +7,7 @@
 		this.onParameterChanged(function(param) {
 		    console.log("param1: " + JSON.stringify(param));
 
-		    load(param);
+		    loadNaver(param);
     	});
 
 		
@@ -16,7 +16,7 @@
 		function onValueChanged()
 		{
 			
-			load(SearchTextJS.value);
+			loadNaver(SearchTextJS.value);
 
 		}
 		function loadNaver(keyword){
@@ -32,7 +32,7 @@
 			    method: 'GET',
 			    headers: {
 				"X-Naver-Client-Id": "RYtNojGC2gQG0EW42G6z",
-				"X-Naver-Client-Secret": "mEXxVBRnLe"} 
+				"X-Naver-Client-Secret": "83mpaCTG7L"} 
 			     
 			}).then(function(response) {
 			    status = response.status;  // Get the HTTP status code

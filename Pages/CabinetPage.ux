@@ -12,7 +12,7 @@
 			<Grid Alignment="Left" Width="100%" Rows="1*,auto">
 				<Grid Alignment="Left" Width="100%" Columns="auto,1*,auto">
 					<Rectangle Width="50" Clicked="{gohome}">
-						<Image File="../Assets/Images/home.png" Width="24" />
+						
 					</Rectangle>
 					<Text Value="NEWS" Color="#ECEFF1" FontSize="28" Alignment="Center" />
 					
@@ -24,7 +24,7 @@
 					</Rectangle>
 					<Shadow />					
 				</Grid>
-				<TextInput ux:Name="searchText" PlaceholderColor="#FFF" Padding="10" TextColor="#fff" Opacity="1" ZOffset="3" IsEnabled="true" Width="100%">
+				<TextInput ux:Name="searchText" PlaceholderColor="#FFF" Padding="10" TextColor="#000" Opacity="1" ZOffset="3" IsEnabled="true" Width="100%"  Value="{SearchTextJS}" ValueChanged="{onValueChanged}">
 				<Rectangle Layer="Background" CornerRadius="0" Color="#FFF">
 					<Stroke Width="2" Brush="#BBB" />
 				</Rectangle>
@@ -37,7 +37,7 @@
 		
 		<ScrollView>
 			<StackPanel ItemSpacing="1">
-				<Each Items="{dataSource}">
+				<Each Items="{eventsValue}">
 					<Panel>
 					
 
@@ -59,51 +59,86 @@
 		var Observable = require("FuseJS/Observable");
 		var InterApp = require("FuseJS/InterApp");
 		var data = Observable();
-
-		function Article(item) {
-			//console.log(JSON.stringify(item));
-			this.title = item.title;
-			this.description = item.description;
-			this.author = item.author;
-			this.url = item.original_url;
-
-			this.image = item.iamge_url;
-			//console.log(this.image); 
+		var ROOT_URL = "https://openapi.naver.com/v1/search/news.json?query=";
+    	var SearchTextJS = Observable(); 
+    	var e = Observable();
+		function loadNaver(keyword){
 			
-		};
-		//fetch("https://api.myjson.com/bins/16g003") 경제 
-		fetch("https://api.myjson.com/bins/16g003")
-		.then(function(response) { return response.json(); })
-		.then(function(responseObject) {
-			var items = [];
+			var status = 0;
+			var response_ok = false;
+			
 
-			for (var i in responseObject.content) {
+			
+			var url = encodeURI(ROOT_URL + keyword);
+			
+			fetch(url, {
+			    method: 'GET',
+			    headers: {
+				"X-Naver-Client-Id": "RYtNojGC2gQG0EW42G6z",
+				"X-Naver-Client-Secret": "83mpaCTG7L"} 
+			     
+			}).then(function(response) {
+			    status = response.status;  // Get the HTTP status code
+			    response_ok = response.ok; // Is response.status in the 200-range?
+			    
+			    return response.json();    // This returns a promise
+			}).then(function(responseObject) {
+				
+				e.clear();
+				for(var i=0; i<responseObject.items.length;i++) {
 
-				items.push(new Article(responseObject.content[i]));
+					e.add(responseObject.items[i]); 	
+				}
+				//e.remove(1);
+			
+
+				
+			    // Do something with the result
+			}).catch(function(err) {
+				
+			    // An error occurred somewhere in the Promise chain
+			});
+ 
+	  
 			}
-			data.replaceAll(items);
-		});
+
+		this.onParameterChanged(function(param) {
+		    
+
+		    loadNaver(param);
+    	});
+
+	
+	
+
 		function gohome()
 		{
-			router.goto("splashpage");
+			router.goto("selectionpage");
 		}
 		function goback()
 		{
-			router.goto("categorypage");	
+			router.goBack();	
 		}
 		function eachClicked(e)
 		{
-			console.log(JSON.stringify(e.data.url));
-			InterApp.launchUri(e.data.url);	
+			
+			InterApp.launchUri(e.data.link);	
 		}
 
-
+		function onValueChanged()
+		{
+		
+			loadNaver(SearchTextJS.value);
+		}
 
 		module.exports = {
 			dataSource: data,
 			gohome:gohome,
 			goback:goback,
-			eachClicked:eachClicked
+			eachClicked:eachClicked,
+			onValueChanged:onValueChanged,
+			SearchTextJS:SearchTextJS,
+			eventsValue: e,
 		};
 
 
@@ -123,18 +158,8 @@
 			</Panel>
 			<DockPanel>
 				<Text Value="{description}" TextWrapping="Wrap" FontSize="13" Color="#022328" />
-				<WhileString Value="{image}" Test="IsNotEmpty">
-					<Panel Dock="Left">
-						<Image Url="{image}" Width="80" Margin="0,0,10,0" Alignment="TopLeft" />
-					</Panel>
-				</WhileString>
 			</DockPanel>
-			<DockPanel>
-				
-				<WhileString Value="{author}" Test="IsNotEmpty">
-			 		<Text Value="by {author}" FontSize="10" Color="#022328" Dock="Right" />
-			 	</WhileString>
-			</DockPanel>
+		
 
 		</StackPanel>
 		<Rectangle >
