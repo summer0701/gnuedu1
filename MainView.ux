@@ -10,7 +10,7 @@
 	<Panel>
 		<Navigator DefaultPath="splashpage">
 			<!-- 1. Splash Page -->
-			<SplashPage ux:Template="splashpage" router="router" />
+			<SplashPage ux:Template="splashpage" router="router" Background="#fff" />
 			<!-- 2. Login Page -->
 			<LoginPage ux:Template="loginpage" router="router" />
 			<!-- 3. Main Page -->

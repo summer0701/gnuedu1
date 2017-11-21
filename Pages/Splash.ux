@@ -4,23 +4,26 @@
 
 		<JavaScript>
 			module.exports = {
-				gologin: function() { router.push("selectionpage");}
+				gologin: function() { router.goto("categorypage");}
 			}
 		</JavaScript>
 
 		<!-- Video -->
-		
+		<Video Layer="Background" File="../Assets/Movies/sample.mp4" AutoPlay="true" IsLooping="true" StretchMode="UniformToFill" Opacity="0.2" Volume="0" Dock="Fill"> 
+			<!-- <Blur Radius="0" /> -->
+		</Video>
 
 		<Grid RowCount="2">
 			<!-- Logo -->
 			<StackPanel Alignment="VerticalCenter">
-				<Text Font="MyFont" Color="White" Alignment="HorizontalCenter" FontSize="50">The News</Text>
+				<Image File="../Assets/Images/logo.png" Alignment="HorizontalCenter" Width="200" Margin="0, 200, 0, 0" />
+				<!-- <Text Font="MyFont" Color="Black" Alignment="HorizontalCenter" FontSize="50">경상대학교</Text> -->
 			</StackPanel>
 
 			<!-- Get Started Button -->
-			<Panel Margin="10" Padding="10" Height="40" Clicked="{gologin}">
-				<Rectangle Layer="Background" Color="#125F63" CornerRadius="4">
-					<DropShadow Angle="90" Distance="1" Spread="2" Color="#00000060" />
+			<Panel Margin="10, 100, 10, 10" Padding="10" Height="40" Width="70%" Clicked="{gologin}">
+				<Rectangle Layer="Background" Color="#125F63" CornerRadius="5">
+					<!-- <DropShadow Angle="90" Distance="1" Spread="2" Color="#00000060" /> -->
 				</Rectangle>
 				<Text Value="시작하기" FontSize="16" Color="White" Alignment="Center" />
 				<WhilePressed>
@@ -28,5 +31,6 @@
 				</WhilePressed>
 			</Panel>
 		</Grid>
-	</DockPanel>
+	</DockPanel >
+	<Panel Background="#fff"/>
 </Page>
