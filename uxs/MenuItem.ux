@@ -1,3 +1,0 @@
-	<Panel ux:Class="MenuItem" Height="MenuItemHeight">
-								<Rectangle Alignment="Bottom" Height="2" Color="#fff2" />
-	</Panel>

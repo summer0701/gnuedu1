@@ -9,19 +9,10 @@
 
 	<Panel>
 		<Navigator DefaultPath="splashpage">
-			<!-- 1. Splash Page -->
+			
 			<SplashPage ux:Template="splashpage" router="router" Background="#fff" />
-			<!-- 2. Login Page -->
-			<LoginPage ux:Template="loginpage" router="router" />
-			<!-- 3. Main Page -->
-			<MainPage ux:Template="mainpage" router="router" />
-			<!-- 4. Sub Page -->
-			<SubPage ux:Template="subpage" router="router" />
-			
 			<CabinetPage ux:Template="cabinetpage" router="router" />
-
 			<CategoryPage ux:Template="categorypage" router="router" />
-			
 			<SelectionPage ux:Template="selectionpage" router="router" />
 		</Navigator>
 	</Panel>

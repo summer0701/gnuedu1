@@ -5,9 +5,9 @@
 
 			var profiles = Observable(
 				{ resource : "Assets/Images/profile_1.png", value : "profile1" },
-				{ resource : "Assets/Images/profile_2.png" },
-				{ resource : "Assets/Images/profile_3.png" },
-				{ resource : "Assets/Images/profile_4.png" }
+				{ resource : "Assets/Images/profile_2.png", value : "profile2" },
+				{ resource : "Assets/Images/profile_3.png", value : "profile3" },
+				{ resource : "Assets/Images/profile_4.png", value : "profile4" }
 			
 				
 				
@@ -23,7 +23,7 @@
 				if(e.data.value=="profile1") {
 					router.push("categorypage");
 				}
-				console.log(JSON.stringify(e.data.value));
+				
 			}
   			module.exports = {
   				profiles : profiles,

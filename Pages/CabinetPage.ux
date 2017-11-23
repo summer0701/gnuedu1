@@ -31,21 +31,15 @@
 			 	<SolidColor />
 				</TextInput>
 			</Grid>
-			
-
 		</Panel>
 		
 		<ScrollView>
 			<StackPanel ItemSpacing="1">
 				<Each Items="{eventsValue}">
 					<Panel>
-					
-
 					<NewsItem>
-
 						<Clicked>
 							<Callback Handler="{eachClicked}" />
-
 						</Clicked>
 					</NewsItem>
 					</Panel>
@@ -108,13 +102,7 @@
 		    loadNaver(param);
     	});
 
-	
-	
 
-		function gohome()
-		{
-			router.goto("selectionpage");
-		}
 		function goback()
 		{
 			router.goBack();	
@@ -133,7 +121,6 @@
 
 		module.exports = {
 			dataSource: data,
-			gohome:gohome,
 			goback:goback,
 			eachClicked:eachClicked,
 			onValueChanged:onValueChanged,
