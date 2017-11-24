@@ -9,14 +9,14 @@
 		</JavaScript>
 
 		<!-- Video -->
-		<Video Layer="Background" File="../Assets/Movies/sample.mp4" AutoPlay="true" IsLooping="true" StretchMode="UniformToFill" Opacity="0.2" Volume="0" Dock="Fill"> 
+		<Video Layer="Background" File="../Assets/Movies/sample2.mp4" AutoPlay="true" IsLooping="true" StretchMode="UniformToFill" Opacity="1" Volume="0" Dock="Fill"> 
 			<!-- <Blur Radius="0" /> -->
 		</Video>
 
 		<Grid RowCount="2">
 			<!-- Logo -->
 			<StackPanel Alignment="VerticalCenter">
-				<Image File="../Assets/Images/logo.png" Alignment="HorizontalCenter" Width="200" Margin="0, 200, 0, 0" />
+			<!--	<Image File="../Assets/Images/logo.png" Alignment="HorizontalCenter" Width="200" Margin="0, 200, 0, 0" />-->
 				<!-- <Text Font="MyFont" Color="Black" Alignment="HorizontalCenter" FontSize="50">경상대학교</Text> -->
 			</StackPanel>
 
